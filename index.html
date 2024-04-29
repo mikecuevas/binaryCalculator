@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Number Converter</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .converter { margin-bottom: 20px; }
+    label, select, input { margin-right: 10px; }
+    .result { margin-top: 10px; }
+</style>
+</head>
+<body>
+    <h1>Number Converter</h1>
+
+    <div class="converter">
+        <label for="number">Enter your number:</label>
+        <input type="text" id="number" required>
+        
+        <label for="conversion-type">Select conversion:</label>
+        <select id="conversion-type">
+            <option value="bin-to-dec">Binary to Decimal</option>
+            <option value="dec-to-bin">Decimal to Binary</option>
+            <option value="oct-to-hex">Octal to Hexadecimal</option>
+            <option value="hex-to-dec">Hexadecimal to Decimal</option>
+            <option value="bin-to-hex">Binary to Hexadecimal</option>
+        </select>
+        
+        <button onclick="convert()">Convert</button>
+    </div>
+
+    <div class="result" id="result"></div>
+
+<script>
+function convert() {
+    var num = document.getElementById("number").value;
+    var conversionType = document.getElementById("conversion-type").value;
+    var result = '';
+
+    switch (conversionType) {
+        case 'bin-to-dec':
+            result = parseInt(num, 2).toString(10);
+            break;
+        case 'dec-to-bin':
+            result = parseInt(num, 10).toString(2);
+            break;
+        case 'oct-to-hex':
+            result = parseInt(num, 8).toString(16).toUpperCase();
+            break;
+        case 'hex-to-dec':
+            result = parseInt(num, 16).toString(10);
+            break;
+        case 'bin-to-hex':
+            result = parseInt(num, 2).toString(16).toUpperCase();
+            break;
+        default:
+            result = 'Invalid conversion type!';
+    }
+
+    document.getElementById("result").innerText = 'Converted Result: ' + result;
+}
+</script>
+
+</body>
+</html>
